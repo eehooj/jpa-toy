@@ -22,11 +22,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor(access = PROTECTED)
-public class OrderInfo {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class OrderInfo extends EntityExtension {
 
   private Integer quantity;
 

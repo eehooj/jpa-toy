@@ -20,11 +20,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @NoArgsConstructor(access = PROTECTED)
-public class Ingredient {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class Ingredient extends EntityExtension {
 
   @Column(length = 50, nullable = false)
   private String name;
