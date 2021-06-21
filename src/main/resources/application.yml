@@ -1,0 +1,61 @@
+spring:
+  session:
+    store-type: none
+
+  jpa:
+    show-sql: true
+    database: h2
+    database-platform: H2
+    generate-ddl: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show-sql: true
+        SQL: trace
+        format_sql: true
+        use_sql_comments: true
+        type:
+          descriptor:
+            sql: trace
+        jdbc:
+          batch_size: 5
+        default_batch_fetch_size: 1000
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    hikari:
+      driver-class-name: org.h2.Driver
+      minimumIdle: 200
+      maximumPoolSize: 200
+      poolName: SpringBootJPAHikariCP
+      idleTimeout: 10000
+      connection-timeout: 10000
+      validation-timeout: 10000
+      maxLifetime: 580000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
