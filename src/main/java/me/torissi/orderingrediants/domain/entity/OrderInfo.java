@@ -40,7 +40,7 @@ public class OrderInfo extends EntityExtension {
     this.order = order;
   }
 
-  public OrderInfo createEntity(Integer quantity, Ingredient ingredient, Order order) {
+  public static OrderInfo createEntity(Integer quantity, Ingredient ingredient, Order order) {
     return new OrderInfo(quantity, ingredient, order);
   }
 

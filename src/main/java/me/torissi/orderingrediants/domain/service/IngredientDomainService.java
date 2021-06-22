@@ -1,9 +1,11 @@
 package me.torissi.orderingrediants.domain.service;
 
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.torissi.orderingrediants.domain.entity.Ingredient;
 import me.torissi.orderingrediants.domain.repository.IngredientRepository;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import me.torissi.orderingrediants.domain.vo.OrderSearch;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +21,11 @@ public class IngredientDomainService {
     return repository.save(ingredient).getId();
   }
 
-  public Ingredient get(Long id) throws NotFoundException {
-    return repository.findById(id).orElseThrow(NotFoundException::new);
+  public Ingredient get(Long id) throws EntityNotFoundException {
+    return repository.findById(id).orElseThrow(EntityNotFoundException::new);
+  }
+
+  public Page<Ingredient> getPage(OrderSearch search) {
+    return repository.getPage(search);
   }
 }

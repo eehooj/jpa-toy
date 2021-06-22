@@ -1,9 +1,9 @@
 package me.torissi.orderingrediants.domain.service;
 
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import me.torissi.orderingrediants.domain.entity.OrderInfo;
 import me.torissi.orderingrediants.domain.repository.OrderInfoRepository;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +19,7 @@ public class OrderInfoDomainService {
     return repository.save(orderInfo).getId();
   }
 
-  //단일 조회가 필요한가
-  public OrderInfo get(Long id) throws NotFoundException {
-    return repository.findById(id).orElseThrow(NotFoundException::new);
+  public OrderInfo get(Long id) throws EntityNotFoundException {
+    return repository.findById(id).orElseThrow(EntityNotFoundException::new);
   }
 }

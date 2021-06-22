@@ -11,8 +11,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantCreateRequest {
+public class IdRequest {
 
-  private String name;
+  private Long id;
 
 }

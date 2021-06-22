@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,25 +31,23 @@ public class Order extends EntityExtension {
   private OrderStatus status;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+  @OrderBy("id asc")
   private List<OrderInfo> orderInfoList;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "restaurantId") //외래키를 가지고 있는 테이블에 조인 컬럼! => 반대 경우도 가능하나, 디비와 경우가 달라져 헷갈림
   private Restaurant restaurant;
 
-  private Order(OrderStatus status, Restaurant restaurant) {
-    this.status = status;
+  private Order(Restaurant restaurant) {
+    this.status = OrderStatus.READY;
     this.restaurant = restaurant;
   }
 
-  public static Order createEntity(
-      OrderStatus status, Restaurant restaurant) {
-    return new Order(status, restaurant);
+  public static Order createEntity(Restaurant restaurant) {
+    return new Order(restaurant);
   }
 
-  public void updateEntity(
-      OrderStatus status, Restaurant restaurant) {
+  public void updateEntity(OrderStatus status) {
     this.status = Optional.ofNullable(status).orElse(this.status);
-    this.restaurant = Optional.ofNullable(restaurant).orElse(this.restaurant);
   }
 }

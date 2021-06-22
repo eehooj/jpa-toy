@@ -11,8 +11,8 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RestaurantCreateRequest {
+public class IngredientCreateRequest {
 
   private String name;
-
+  private Integer price;
 }
