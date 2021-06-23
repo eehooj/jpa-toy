@@ -2,6 +2,7 @@ package me.torissi.orderingrediants.service;
 
 import lombok.RequiredArgsConstructor;
 import me.torissi.orderingrediants.domain.dto.request.RestaurantCreateRequest;
+import me.torissi.orderingrediants.domain.dto.request.RestaurantUpdateRequest;
 import me.torissi.orderingrediants.domain.dto.response.RestaurantResponse;
 import me.torissi.orderingrediants.domain.entity.Restaurant;
 import me.torissi.orderingrediants.domain.service.RestaurantDomainService;
@@ -35,5 +36,23 @@ public class RestaurantService {
   public ResponseEntity<?> getRestaurantPage(OrderSearch search) {
     return ResponseEntity.ok(service.getPage(search)
         .map(entity -> mapper.map(entity, RestaurantResponse.class)));
+  }
+
+  @Transactional
+  public ResponseEntity<?> updateRestaurant(Long id, RestaurantUpdateRequest dto) {
+    Restaurant restaurant = service.get(id);
+
+    restaurant.updateEntity(dto.getName());
+
+    return ResponseEntity.ok(null);
+  }
+
+  @Transactional
+  public ResponseEntity<?> removeRestaurant(Long id) {
+    Restaurant restaurant = service.get(id);
+
+    restaurant.removeEntity();
+
+    return ResponseEntity.ok(null);
   }
 }

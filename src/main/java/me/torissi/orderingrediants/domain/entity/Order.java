@@ -50,4 +50,8 @@ public class Order extends EntityExtension {
   public void updateEntity(OrderStatus status) {
     this.status = Optional.ofNullable(status).orElse(this.status);
   }
+
+  public void removeEntity() {
+    remove();
+  }
 }

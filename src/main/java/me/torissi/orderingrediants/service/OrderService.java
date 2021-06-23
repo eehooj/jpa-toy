@@ -11,7 +11,9 @@ import me.torissi.orderingrediants.domain.service.IngredientDomainService;
 import me.torissi.orderingrediants.domain.service.OrderDomainService;
 import me.torissi.orderingrediants.domain.service.OrderInfoDomainService;
 import me.torissi.orderingrediants.domain.service.RestaurantDomainService;
+import me.torissi.orderingrediants.domain.vo.OrderSearch;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,12 +52,25 @@ public class OrderService {
     return ResponseEntity.ok(data);
   }
 
+  public ResponseEntity<?> getOrderPage(Long restaurantId, OrderSearch search) {
+    Page<Order> page = orderDomainService.getPage(restaurantId, search);
+    return ResponseEntity.ok(page.map(entity -> mapper.map(entity, OrderResponse.class)));
+  }
+
   @Transactional
   public ResponseEntity<?> changeOrderStatus(Long id, OrderChangeStatusRequest dto) {
     Order order = orderDomainService.get(id);
-
     order.updateEntity(dto.getStatus());
 
     return ResponseEntity.ok().body(null);
+  }
+
+  @Transactional
+  public ResponseEntity<?> removeOrder(Long id) {
+    Order order = orderDomainService.get(id);
+    order.getOrderInfoList().forEach(OrderInfo::removeEntity);
+    order.removeEntity();
+
+    return ResponseEntity.ok(null);
   }
 }

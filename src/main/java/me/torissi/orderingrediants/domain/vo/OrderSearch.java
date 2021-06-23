@@ -8,7 +8,7 @@ public class OrderSearch {
   private Integer page;
   private Integer limit;
   private String name;
-  private String sortTarget;
-  private String sortType;
+  private String starget;
+  private String stype;
 
 }

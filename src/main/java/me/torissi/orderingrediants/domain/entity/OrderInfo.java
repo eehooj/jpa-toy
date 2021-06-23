@@ -49,4 +49,8 @@ public class OrderInfo extends EntityExtension {
     this.ingredient = Optional.ofNullable(ingredient).orElse(this.ingredient);
     this.order = Optional.ofNullable(order).orElse(this.order);
   }
+
+  public void removeEntity() {
+    remove();
+  }
 }

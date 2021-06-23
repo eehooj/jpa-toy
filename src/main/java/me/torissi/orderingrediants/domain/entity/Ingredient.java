@@ -41,4 +41,8 @@ public class Ingredient extends EntityExtension {
     this.name = Optional.ofNullable(name).orElse(this.name);
     this.price = Optional.ofNullable(price).orElse(this.price);
   }
+
+  public void removeEntity() {
+    remove();
+  }
 }

@@ -1,5 +1,6 @@
 package me.torissi.orderingrediants.domain.dto.request;
 
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,6 +14,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class IngredientCreateRequest {
 
+  @NotEmpty
   private String name;
+
+  @NotEmpty
   private Integer price;
 }

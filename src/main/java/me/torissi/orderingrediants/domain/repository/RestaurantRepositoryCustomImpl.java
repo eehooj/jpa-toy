@@ -30,10 +30,10 @@ public class RestaurantRepositoryCustomImpl implements RestaurantRepositoryCusto
       query.where(restaurant.name.containsIgnoreCase(search.getName()));
     }
 
-    if (!StringUtils.hasLength(search.getSortTarget())
-        && !StringUtils.hasLength(search.getSortType())) {
-      SortTarget sort = SortTarget.valueOf(search.getSortTarget());
-      String type = search.getSortType();
+    if (!StringUtils.hasLength(search.getStarget())
+        && !StringUtils.hasLength(search.getStype())) {
+      SortTarget sort = SortTarget.valueOf(search.getStarget());
+      String type = search.getStype();
       Order orderType = type.equalsIgnoreCase("asc") ? Order.ASC : Order.DESC;
 
       if (sort == SortTarget.NAME) {

@@ -1,8 +1,6 @@
 package me.torissi.orderingrediants.domain.dto.request;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
+import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,13 +12,9 @@ import lombok.Setter;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderInfoCreateRequest {
+public class RestaurantUpdateRequest {
 
-  @Positive
-  private Integer quantity;
-
-  @NotNull
-  @Valid
-  private IdRequest ingredient;
+  @NotEmpty
+  private String name;
 
 }

@@ -39,4 +39,8 @@ public class Restaurant extends EntityExtension {
   public void updateEntity(String name) {
     this.name = Optional.ofNullable(name).orElse(this.name);
   }
+
+  public void removeEntity() {
+    remove();
+  }
 }

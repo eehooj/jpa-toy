@@ -24,4 +24,8 @@ public class EntityExtension {
 
   @ColumnDefault("false")
   protected Boolean delFlag;
+
+  public void remove() {
+    delFlag = true;
+  }
 }
